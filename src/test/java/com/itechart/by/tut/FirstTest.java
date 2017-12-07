@@ -13,6 +13,8 @@ import org.openqa.selenium.firefox.FirefoxDriver;
  */
 public class FirstTest {
     private WebDriver driver;
+    private String shopsXpath = "//div[@data-popup='addon-menu-items']//a[@title='Магазины']";
+    private String searchXpath = "//input[@placeholder='Поиск']";
 
     @Before
     public void setUp() {
@@ -28,10 +30,10 @@ public class FirstTest {
     @Test
     public void testForTutby() {
         HomePage homePage = new HomePage(driver);
-        homePage.waitForElement("//a[@href='https://www.tut.by/resource/' and contains(text(),'Разделы')]");
-        ShopsPage shops = homePage.openInNewTab("//div[@data-popup='addon-menu-items']//a[@title='Магазины']");
+        homePage.waitForElement();
+        ShopsPage shops = homePage.openInNewTab(shopsXpath);
         shops.checkTitle();
         shops.closeTab();
-        homePage.checkElement("//input[@placeholder='Поиск']");
+        homePage.checkElement(searchXpath);
     }
 }

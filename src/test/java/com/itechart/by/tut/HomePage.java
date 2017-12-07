@@ -22,12 +22,13 @@ public class HomePage {
         parentHandle = driver.getWindowHandle();
     }
 
-    public boolean waitForElement(final String xpath) {
+    public boolean waitForElement() {
         link = (new WebDriverWait(driver, 30))
                 .until(new ExpectedCondition<WebElement>() {
                     @Override
                     public WebElement apply(WebDriver d) {
-                        return d.findElement(By.xpath(xpath));
+                        return d.findElement(By
+                                .xpath("//a[@href='https://www.tut.by/resource/' and contains(text(),'Разделы')]"));
                     }
                 });
         return true;
